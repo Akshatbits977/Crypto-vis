@@ -7,7 +7,7 @@ function DataGrid() {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-        fetch('https://perfwsw3.aus.stglabs.ibm.com:3011/fetchCollectionData/merged')
+        fetch('https://perfwsw3.aus.stglabs.ibm.com:3011/fetchCollectionData/merged?fields=library,collectionDate')
             .then((response) => response.json())
             .then((fetchedData) => {
                 setData(fetchedData);
@@ -130,4 +130,5 @@ function DataGrid() {
 }
 
 export default DataGrid;
+
 

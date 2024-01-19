@@ -7,7 +7,7 @@ import DataGrid from './DataGrid';
 import LibraryTabs from './LibraryTabs';
 import LoginPage from './LoginPage';
 
-function Home({ username }) {
+function Home({ username, onLogout }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
@@ -20,7 +20,8 @@ function Home({ username }) {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <h2>Welcome, {username}!</h2>
+      <h2>Welcome {username}!</h2>
+      <button onClick={onLogout}>Logout</button>
       <MetadataTable searchQuery={searchQuery} />
     </div>
   );
@@ -56,10 +57,16 @@ function App() {
                 <li>
                   <Link to="/librarytabs">Library Tabs</Link>
                 </li>
-                <li>
-                  <button onClick={handleLogout}>Logout</button>
-                </li>
               </>
+            )}
+            {isLoggedIn ? (
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
             )}
           </ul>
         </nav>
@@ -68,7 +75,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={isLoggedIn ? <Home username={username} /> : <Navigate to="/login" />}
+            element={isLoggedIn ? <Home username={username} onLogout={handleLogout} /> : <Navigate to="/login" />}
           />
           <Route
             path="/datagrid"

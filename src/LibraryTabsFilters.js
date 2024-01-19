@@ -48,7 +48,7 @@ function LibraryTabsFilters({ onFilterChange }) {
   };
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ marginTop: '20px', maxWidth: '400px' }}>
       <h3>Filters</h3>
       <div>
         <label>Start Date:</label>
@@ -58,7 +58,7 @@ function LibraryTabsFilters({ onFilterChange }) {
         <label>End Date:</label>
         <input type="date" value={endDate} onChange={handleEndDateChange} />
       </div>
-      <div>
+      <div style={{ height: '300px', width: '100%', overflowX: 'auto', overflowY: 'auto', border: '1px solid #ccc', borderRadius: '4px', padding: '10px' }}>
         <h4>Metadata Filters:</h4>
         {Object.keys(metadataValues).map((header) => (
           <div key={header}>
@@ -80,6 +80,8 @@ function LibraryTabsFilters({ onFilterChange }) {
       <button onClick={handleApplyFilters}>Apply Filters</button>
     </div>
   );
+  
+  
 }
 
 export default LibraryTabsFilters;
